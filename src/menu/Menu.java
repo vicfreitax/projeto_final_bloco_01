@@ -3,19 +3,19 @@ package menu;
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
 import controller.Controller;
+import model.Livro;
 
 
 public class Menu {
 
 	public static void main(String[] args) {
 	Scanner read = new Scanner(System.in);
-	
 	Controller livros = new Controller();
 	
 		
-		int opcao;
+		int opcao, volume, edicao, tipo, id;
+		String titulo, autor;
 		
 		while(true) {
 			System.out.println("*****************************************************");
@@ -24,7 +24,7 @@ public class Menu {
 			System.out.println("													");
 			System.out.println("****************************************************");
 			System.out.println("													");
-			System.out.println("            1- Criar Produto                        ");
+			System.out.println("            1- Criar Livro                          ");
 			System.out.println("            2- Listar Produtos                      ");
 			System.out.println("            3- Atualizar Produto                    ");
 			System.out.println("            4- Deletar Produto                      ");
@@ -34,7 +34,7 @@ public class Menu {
 			System.out.println("Entre com a opção desejada:                         ");
 			System.out.println("													");
 
-			try {
+		try {
 				opcao = read.nextInt();
 			}catch(InputMismatchException e){
 				System.out.println("\nDigite valores inteiros!");
@@ -50,9 +50,20 @@ public class Menu {
 	
 		switch(opcao) {
 		case 1:
-			System.out.println("Criar Produto \n\n");
-			
-			keyPress();
+			System.out.println("Cadastrar Livro \n\n");
+			System.out.println("Qual o volume do seu livro?");
+            volume =  read.nextInt();
+            System.out.println("Qual a edição do seu livro?");
+            edicao =  read.nextInt();
+            System.out.println("Qual o tipo do livro? - 1 - Enciclopédia / 2 - Teórico");
+            tipo =  read.nextInt();
+            System.out.println("Qual o título do livro?");
+            read.skip("\\R?");
+            titulo =  read.nextLine();
+            System.out.println("Qual o autor do livro?");
+            autor =  read.nextLine();
+            livros.cadastrar(new Livro(livros.gerarId(), volume, edicao, tipo, titulo, autor));
+            
 			break;
 		case 2:
 			System.out.println("Listar Produtos\n\n");
@@ -61,18 +72,36 @@ public class Menu {
 			break;
 		case 3:
 			System.out.println("Atualizar Produto\n\n");
+			System.out.println("Qual a id do livro que você gostaria de atualizar?");
+	        id =  read.nextInt();
+	        var procurarLivro = livros.buscarNaCollection(id);
+			if(procurarLivro!=null) {
+				System.out.println("Qual o volume do seu livro?");
+	            volume =  read.nextInt();
+	            System.out.println("Qual a edição do seu livro?");
+	            edicao =  read.nextInt();
+	            System.out.println("Qual o tipo do livro? - 1 - Enciclopédia / 2 - Teórico");
+	            tipo =  read.nextInt();
+	            System.out.println("Qual o título do livro?");
+	            read.skip("\\R?");
+	            titulo =  read.nextLine();
+	            System.out.println("Qual o autor do livro?");
+	            autor =  read.nextLine();
+	            livros.atualizar(new Livro(id, volume, edicao, tipo, titulo, autor));
+			}
 			
 			keyPress();
 			break;
 		case 4:
 			System.out.println("Deletar Produto\n\n");
-			
+			   System.out.println("Qual a id do livro que você gostaria de deletar?");
+	            id =  read.nextInt();
+	            livros.deletar(id);
 			keyPress();
 			break;
 
 		default:
 			System.out.println("\nOpção Inválida!\n");
-			
 			keyPress();
 			break;}}
 		

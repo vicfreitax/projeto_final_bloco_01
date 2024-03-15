@@ -7,13 +7,23 @@ public abstract class Obra {
 	private int tipo;
 	private String titulo;
 	private String autor;
+	private int id;
 	
-	public Obra(int volume, int edicao, int tipo, String titulo, String autor) {
+	public Obra(int id, int volume, int edicao, int tipo, String titulo, String autor) {
 		this.autor = autor;
 		this.edicao= edicao;
 		this.tipo= tipo;
 		this.titulo= titulo;
 		this.volume=volume;
+		this.id = id;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public int getVolume() {
@@ -57,15 +67,16 @@ public abstract class Obra {
 	}
 	
 	public void visualizar() {
-		String tipo = ""; //perguntar
+		String tipo = ""; //inicializando a variavel com vazio
 		
 		switch (this.tipo) {
 		case 1:
 			tipo= "Enciclopedia";
 			break;
 		case 2:
-			tipo = "Livro Teórico";
+			tipo = "Teórico";
 			break;
+			
 		}
 		System.out.println("\n\n *******************************************************");
 		System.out.println("Dados da Obra:");

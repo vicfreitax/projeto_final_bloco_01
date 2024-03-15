@@ -7,7 +7,14 @@ import repository.Repository;
 
 public class Controller implements Repository {
 	
+	int id=0;
 	private ArrayList<Obra> catalogo = new ArrayList<Obra> ();
+
+	@Override
+	public void cadastrar(Obra obra) {
+		catalogo.add(obra);
+		System.out.println("O livro de identificador nº "+ obra.getId()+ " foi cadastrado com sucesso!" );
+	}
 
 	@Override
 	public void listarTodos() {
@@ -16,29 +23,43 @@ public class Controller implements Repository {
 		}
 		
 	}
-
-	@Override
-	public void cadastrar(Obra obra) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 	@Override
 	public void atualizar(Obra obra) {
-		// TODO Auto-generated method stub
-		
+		var procurarLivro = buscarNaCollection(obra.getId());
+		if(procurarLivro!= null) {
+			catalogo.set(catalogo.indexOf(procurarLivro), obra);
+				System.out.println("O livro de identificador nº "+ obra.getId() + " foi atualizado com sucesso!" );	
+		}
+		else {
+			System.out.println("Não achei o livro com nº "+ obra.getId());
+		}
 	}
 
 	@Override
-	public void deletar(int titulo) {
-		// TODO Auto-generated method stub
+	public void deletar(int id) {
+		var procurarId = buscarNaCollection(id);
+		if(procurarId != null) {
+			if(catalogo.remove(procurarId)==true) {
+				System.out.println("O livro de identificador nº "+ id + " foi deletado com sucesso!" );
+			}
+			
+		}
+		else {
+			System.out.println("Não achei o livro com nº "+ id);
+		}
 		
 	}
-
-	@Override
-	public void deletar(String titulo) {
-		// TODO Auto-generated method stub
-		
-	}
+	public int gerarId() {
+        return ++id;
+    }
+	public Obra buscarNaCollection(int id) {
+        for(var buscarId: catalogo) {
+            if(buscarId.getId() == id) {
+                return buscarId;
+            }
+        }
+        return null;
+    }
 	}
   

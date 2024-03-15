@@ -7,5 +7,5 @@ public interface Repository {
 	public void listarTodos();
 	public void cadastrar(Obra obra);
 	public void atualizar(Obra obra);
-	public void deletar(String titulo);
+	public void deletar(int id);
 }
