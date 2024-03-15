@@ -4,11 +4,16 @@ import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import controller.Controller;
+
 
 public class Menu {
 
 	public static void main(String[] args) {
 	Scanner read = new Scanner(System.in);
+	
+	Controller livros = new Controller();
+	
 		
 		int opcao;
 		
@@ -20,7 +25,7 @@ public class Menu {
 			System.out.println("****************************************************");
 			System.out.println("													");
 			System.out.println("            1- Criar Produto                        ");
-			System.out.println("            2- Buscar Produto                       ");
+			System.out.println("            2- Listar Produtos                      ");
 			System.out.println("            3- Atualizar Produto                    ");
 			System.out.println("            4- Deletar Produto                      ");
 			System.out.println("            5- Sair	                                ");
@@ -50,8 +55,8 @@ public class Menu {
 			keyPress();
 			break;
 		case 2:
-			System.out.println("Buscar Produto\n\n");
-			
+			System.out.println("Listar Produtos\n\n");
+			livros.listarTodos();
 			keyPress();
 			break;
 		case 3:

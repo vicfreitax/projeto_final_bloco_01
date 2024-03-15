@@ -1,14 +1,14 @@
 package model;
 
-public abstract class Livros {
+public abstract class Obra {
 	
-	public int volume;
-	public int edicao;
-	public int tipo;
-	public String titulo;
-	public String autor;
+	private int volume;
+	private int edicao;
+	private int tipo;
+	private String titulo;
+	private String autor;
 	
-	public Livros(int volume, int edicao, int tipo, String titulo, String autor) {
+	public Obra(int volume, int edicao, int tipo, String titulo, String autor) {
 		this.autor = autor;
 		this.edicao= edicao;
 		this.tipo= tipo;
@@ -55,6 +55,7 @@ public abstract class Livros {
 	public void setAutor(String autor) {
 		this.autor = autor;
 	}
+	
 	public void visualizar() {
 		String tipo = ""; //perguntar
 		
@@ -66,4 +67,13 @@ public abstract class Livros {
 			tipo = "Livro Teórico";
 			break;
 		}
+		System.out.println("\n\n *******************************************************");
+		System.out.println("Dados da Obra:");
+		System.out.println("*************************************************************");
+		System.out.println("Volume: " + this.volume);
+		System.out.println("Edição" + this.edicao);
+		System.out.println("Tipo: "+ tipo);
+		System.out.println("Titulo: "+ this.titulo);
+		System.out.println("Autor: "+this.autor);
+		
 	}}

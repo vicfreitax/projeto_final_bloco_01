@@ -1,10 +1,10 @@
 package model;
 
-public class naoficcao extends Livros {
+public class Livro extends Obra {
 	
 	private int quantidadeDisponivel;
 	
-	public naoficcao(int volume, int edicao, int tipo, String titulo, String autor, int quantidade) {
+	public Livro(int volume, int edicao, int tipo, String titulo, String autor, int quantidade) {
 		
 		//livro
 		super (volume, edicao, tipo, titulo, autor);
@@ -24,7 +24,7 @@ public class naoficcao extends Livros {
 	
 	public void visualizar () {
 		super.visualizar();
-		System.out.println(" Tipo " + this.tipo);
+		System.out.println(" Tipo " + this.getTipo());
 	}
 
 	
